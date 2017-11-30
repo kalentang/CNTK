@@ -69,7 +69,7 @@ CNTK_StatusCode CNTK_LoadModel(const wchar_t* modelFilePath, const wchar_t* devi
         return StatusCode(CNTK_ERROR_NULL_POINTER, "'device' parameter is not allowed to be null");
 
     *handle = nullptr;
-    return ExceptionCatcher::Call([&]() { *handle = new EvaluatorWrapper(modelFilePath, device); });
+    return ExceptionCatcher::Call([&]() { *handle = new CNTKEvaluatorWrapper(modelFilePath, device); });
 }
 
 CNTK_StatusCode CNTK_CloneModel(CNTK_ModelHandle model, CNTK_ParameterCloningMethod method, bool flatten, CNTK_ModelHandle* cloned)
