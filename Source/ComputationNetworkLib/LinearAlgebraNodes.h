@@ -1778,7 +1778,8 @@ public:
         ValidateInferBinaryInputDims();
 
         if (isFinalValidationPass &&
-            (Input(0)->GetSampleMatrixNumRows() != Input(1)->GetSampleMatrixNumRows() || Input(0)->GetMBLayout() != Input(1)->GetMBLayout()))
+            (Input(0)->GetSampleMatrixNumRows() != Input(1)->GetSampleMatrixNumRows() ||
+             (Input(0)->HasMBLayout() && Input(1)->HasMBLayout() && *(Input(0)->GetMBLayout()) != *(Input(1)->GetMBLayout()))))
         {
             LogicError("The tensor dimension in the %ls %ls operation does not match.", NodeName().c_str(), OperationName().c_str());
         }
